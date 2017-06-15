@@ -3,16 +3,13 @@
 import json
 import requests
 
-print('what pair do you want to know?')
-data = input('please enter:')
-param = data
-def exchangeRate(param):
-    r = requests.get('https://coincheck.com/api/rate/' + param)
+print('Which currency do you want to know a price calculated in JPY?')
+data = input(":")
+
+def conv(currency): #convert a currency to JPY
+    pair = currency + "_jpy"
+    r = requests.get('https://coincheck.com/api/rate/' + pair)
     rate = json.loads(r.text)['rate']
+    return rate
 
-    print(rate)
-
-exchangeRate(param)
-
-# add comment for check!
-#test2!!!!
+print(conv(data) + "JPY")
